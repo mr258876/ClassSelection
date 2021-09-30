@@ -1,0 +1,19 @@
+
+
+============================================
+关注科帮网公众订阅号获取更多java项目源码信息
+http://www.52itstyle.com/thread-264-1-1.html
+
+拒绝了对对象 'root' (数据库 'db_netExam'，架构 'dbo')的 SELECT 权限
+http://www.52itstyle.com/thread-268-1-1.html
+
+人才管理系统项目详细文档说明
+http://www.52itstyle.com/thread-224-1-1.html
+=========================================
+系统安装说明以及注意事项
+
+http://www.52itstyle.com/thread-151-1-1.html
+
+
+Java Web项目开发案例报价管理系统(亲测)
+http://www.52itstyle.com/thread-150-1-1.html
