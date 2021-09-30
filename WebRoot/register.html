@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<script src="https://www.recaptcha.net/recaptcha/api.js"></script>
+<script>
+    function onSubmit(token) {
+        document.getElementById("register-form").submit();
+    }
+</script>
+
+<head>
+    <meta charset="utf-8" />
+    <title>注册</title>
+    <link rel="stylesheet" href="css/mdui.css" />
+</head>
+
+<body class="mdui-theme-primary-indigo mdui-theme-accent-pink ">
+    <header class="mdui-appbar">
+        <div class="mdui-toolbar mdui-color-theme">
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons"></i></a>
+            <a href="javascript:;" class="mdui-typo-title">欢迎使用选课系统</a>
+            <div class="mdui-toolbar-spacer"></div>
+            <a href="javaScript:location.reload();" class="mdui-btn mdui-btn-icon"><i
+                    class="mdui-icon material-icons"></i></a>
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons"></i></a>
+        </div>
+    </header>
+
+    <div class="mdui-container">
+        <div class="mdui-row mudi-col-xs-12">
+            <h1>用户注册</h1>
+        </div>
+        <form id="register-form">
+            <div class="mdui-row mudi-col-xs-12" id="username-field">
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <i class="mdui-icon material-icons">account_circle</i>
+                    <label class="mdui-textfield-label">Username*</label>
+                    <input class="mdui-textfield-input" type="text" id="username-input" />
+                    <div class="mdui-textfield-helper">输入您的用户名</div>
+                </div>
+            </div>
+            <div class="mdui-row mudi-col-xs-12" id="password-field">
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <i class="mdui-icon material-icons">lock</i>
+                    <label class="mdui-textfield-label">Password*</label>
+                    <input class="mdui-textfield-input" type="password" id="password-input" />
+                    <div class="mdui-textfield-helper">输入您的密码。密码长度在8-16位之间，需要同时包含数字、小写字母、大写字母、特殊符号()@,./*+-中的两种</div>
+                </div>
+            </div>
+            <div class="mdui-row mudi-col-xs-12" id="password-confirm-field">
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <i class="mdui-icon material-icons">lock</i>
+                    <label class="mdui-textfield-label">Confirm Password*</label>
+                    <input class="mdui-textfield-input" type="password" id="password-confirm-input" />
+                    <div class="mdui-textfield-helper">确认您的密码</div>
+                </div>
+            </div>
+            <div class="mdui-row mudi-col-xs-12" id="password-confirm-field">
+                <div class="mdui-textfield mdui-textfield-floating-label">
+                    <i class="mdui-icon material-icons">my_location</i>
+                    <label class="mdui-textfield-label">Identifying Code*</label>
+                    <input class="mdui-textfield-input" type="password" id="password-confirm-input" />
+                    <div class="mdui-textfield-helper">输入您的识别码。您的识别码由8位数字组成</div>
+                </div>
+            </div>
+            <div class="mdui-row mudi-col-xs-12 mdui-p-y-3">
+                <label class="mdui-checkbox">
+                    <input type="checkbox" id="user-agreement-input" />
+                    <i class="mdui-checkbox-icon"></i>
+                    我已阅读并同意不存在的《用户协议》且已知晓可能存在之包括但不限于数据泄露等风险
+                </label>
+            </div>
+            <div class="mdui-row mudi-col-xs-12 mdui-p-y-3">
+                <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent g-recaptcha"
+                data-sitekey="6LdMjvUZAAAAADRaUawSfTCpaQFLa95EleneNZmR" 
+                data-callback='onSubmit' 
+                data-action='submit'>注册</button>
+            </div>
+        </form>
+    </div>
+    </div>
+
+    <script src="js/mdui.js"></script>
+    </div>
+</body>
+
+</html>
