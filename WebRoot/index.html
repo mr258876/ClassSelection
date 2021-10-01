@@ -22,17 +22,40 @@
         </div>
     </header>
 
-    <br>
-    <div class="mdui-typo-display-3 mdui-valign">
-        <p class="mdui-center">请 稍 候</p>
-    </div>
-    <div class="mdui-typo-display-3 mdui-valign">
-        <p class="mdui-typo-display-1-opacity mdui-center">系统正在验证您的身份</p>
-    </div>
+    <div class="mdui-container">
+        <div id="please-retry" hidden>
+            <div class="mdui-valign">
+                <i class="mdui-typo-display-4 mdui-icon material-icons mdui-center">&#xe001;</i>
+            </div>
+            <div class="mdui-typo-display-3 mdui-valign">
+                <p class="mdui-center">请 重 试</p>
+            </div>
+        </div>
+        <div id="please-wait">
+            <div class="mdui-typo-display-3 mdui-valign">
+                <p class="mdui-center">请 稍 候</p>
+            </div>
+            <div class="mdui-typo-display-3 mdui-valign">
+                <p class="mdui-typo-display-1-opacity mdui-center">系统正在验证您的身份</p>
+            </div>
+        </div>
     </div>
 
     <script src="js/mdui.js"></script>
     </div>
 </body>
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+</script>
+<script>
+    $(document).ready(function () {
+        function authenticationError() {
+            $(".mdui-progress").remove();
+            $("#please-wait").hide()
+            $("#please-retry").removeAttr("hidden")
+        }
+        setTimeout(authenticationError, 10000);
+    });
+</script>
 
 </html>
