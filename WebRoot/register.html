@@ -34,7 +34,7 @@
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <i class="mdui-icon material-icons">account_circle</i>
                     <label class="mdui-textfield-label">Username*</label>
-                    <input class="mdui-textfield-input" type="text" id="username-input" />
+                    <input class="mdui-textfield-input" type="text" id="username-input" name="username" />
                     <div class="mdui-textfield-helper">输入您的用户名</div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <i class="mdui-icon material-icons">lock</i>
                     <label class="mdui-textfield-label">Password*</label>
-                    <input class="mdui-textfield-input" type="password" id="password-input" />
+                    <input class="mdui-textfield-input" type="password" id="password-input" name="password" />
                     <div class="mdui-textfield-helper">输入您的密码。密码长度在8-16位之间，需要同时包含数字、小写字母、大写字母、特殊符号()@,./*+-中的两种</div>
                 </div>
             </div>
@@ -54,11 +54,11 @@
                     <div class="mdui-textfield-helper">确认您的密码</div>
                 </div>
             </div>
-            <div class="mdui-row mudi-col-xs-12" id="password-confirm-field">
+            <div class="mdui-row mudi-col-xs-12" id="identifying-field">
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <i class="mdui-icon material-icons">my_location</i>
                     <label class="mdui-textfield-label">Identifying Code*</label>
-                    <input class="mdui-textfield-input" type="password" id="password-confirm-input" />
+                    <input class="mdui-textfield-input" type="password" id="identifying-input" name="id" />
                     <div class="mdui-textfield-helper">输入您的识别码。您的识别码由8位数字组成</div>
                 </div>
             </div>
@@ -66,14 +66,13 @@
                 <label class="mdui-checkbox">
                     <input type="checkbox" id="user-agreement-input" />
                     <i class="mdui-checkbox-icon"></i>
-                    我已阅读并同意不存在的《用户协议》且已知晓可能存在之包括但不限于数据泄露等风险
+                    <div class="mdui-typo">我已阅读并同意不存在的《<a href="javascript:;">用户协议</a>》且已知晓可能存在之包括但不限于数据泄露等风险</div>
                 </label>
             </div>
             <div class="mdui-row mudi-col-xs-12 mdui-p-y-3">
                 <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent g-recaptcha"
-                data-sitekey="6LdMjvUZAAAAADRaUawSfTCpaQFLa95EleneNZmR" 
-                data-callback='onSubmit' 
-                data-action='submit'>注册</button>
+                    data-sitekey="6LdMjvUZAAAAADRaUawSfTCpaQFLa95EleneNZmR" data-callback='onSubmit'
+                    data-action='submit'>注册</button>
             </div>
         </form>
     </div>
