@@ -1,95 +1,109 @@
-<%@ page language="java" pageEncoding="GBK"%>
-<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
-<html> 
-	<head>
-		<title>JSP for DynaActionForm form</title>
-		<script type="text/javascript">
-			function checkInput(){
-				if(document.userLoginForm.loginName.value==null||document.userLoginForm.loginName.value==""){
-					alert("ÓÃ»§Ãû²»ÄÜÎª¿Õ"); 
-					document.userLoginForm.loginName.focus();
-					return false;
-				}
-				if(document.userLoginForm.pwd.value==null||document.userLoginForm.pwd.value==""){
-					alert("ÓÃ»§ÃÜÂë²»ÄÜÎª¿Õ£¡");
-					document.userLoginForm.pwd.focus();
-					return false;
-				} 
-				if(document.userLoginForm.pwd1.value==null||document.userLoginForm.pwd1.value==""){
-					alert("È·ÈÏÃÜÂë²»ÄÜÎª¿Õ£¡");
-					document.userLoginForm.pwd1.focus();
-					return false;
-				}
-				if(document.userLoginForm.pwd.value!=document.userLoginForm.pwd1.value){
-					alert("Á½´ÎÊäÈëµÄÃÜÂë²»Ò»ÖÂ£¡");
-					document.userLoginForm.pwd.focus();
-					return false;
-				} 
-				if(document.userLoginForm.mail.value==null||document.userLoginForm.mail.value==""){
-					alert("µç×ÓÓÊÏä²»ÄÜÎª¿Õ£¡");
-					document.userLoginForm.mail.focus();
-					return false;
-				}
-				return true;
-			}
-		</script>
-	    <link href="images/css.css" rel="stylesheet" type="text/css">
-	</head>
+<%@ page language="java" pageEncoding="GBK" %>
+	<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+		<html>
 
-	<body>
-		<table border="0" align="center" cellpadding="0" cellspacing="0" width="955">
-			<tr>
-				<td colspan="2" background="images/topNo.jpg" height="243">&nbsp;</td>
-			</tr>
-			<tr>
-				<td height="24" colspan="2">&nbsp;</td>
-			</tr>
-			<tr>
-			<td width="27" valign="middle">&nbsp;<img src="images/jiantou.jpg" width="15" height="17" /></td>
-		    <td width="928" valign="middle"><span class="STYLE1">µ±Ç°Î»ÖÃ£º</span>ÐÂÓÃ»§×¢²á</td>
-			</tr>
-			<tr>
-				<td height="24" colspan="2">&nbsp;</td>
-			</tr>
-			<tr>
-				<td  colspan="2" height="200">
-		<html:form action="/reg.do" onsubmit="return checkInput()" >
-			<table width="600" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#c2d3b0">
+		<head>
+			<title>JSP for DynaActionForm form</title>
+			<script type="text/javascript">
+				function checkInput() {
+					if (document.userLoginForm.loginName.value == null || document.userLoginForm.loginName.value == "") {
+						alert("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½");
+						document.userLoginForm.loginName.focus();
+						return false;
+					}
+					if (document.userLoginForm.pwd.value == null || document.userLoginForm.pwd.value == "") {
+						alert("ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ë²»ï¿½ï¿½Îªï¿½Õ£ï¿½");
+						document.userLoginForm.pwd.focus();
+						return false;
+					}
+					if (document.userLoginForm.pwd1.value == null || document.userLoginForm.pwd1.value == "") {
+						alert("È·ï¿½ï¿½ï¿½ï¿½ï¿½ë²»ï¿½ï¿½Îªï¿½Õ£ï¿½");
+						document.userLoginForm.pwd1.focus();
+						return false;
+					}
+					if (document.userLoginForm.pwd.value != document.userLoginForm.pwd1.value) {
+						alert("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²»Ò»ï¿½Â£ï¿½");
+						document.userLoginForm.pwd.focus();
+						return false;
+					}
+					if (document.userLoginForm.mail.value == null || document.userLoginForm.mail.value == "") {
+						alert("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä²»ï¿½ï¿½Îªï¿½Õ£ï¿½");
+						document.userLoginForm.mail.focus();
+						return false;
+					}
+					return true;
+				}
+			</script>
+			<link href="images/css.css" rel="stylesheet" type="text/css">
+		</head>
+
+		<body>
+			<table border="0" align="center" cellpadding="0" cellspacing="0" width="955">
 				<tr>
-					<td height="24" colspan="3" align="center" bgcolor="#FFFFFF" class="STYLE1">${error}</td>
-				</tr>
-				<tr> 
-					<td width="110" bgcolor="#FFFFFF" class="td0">ÓÃ»§Ãû£º</td>
-					<td width="266" bgcolor="#FFFFFF">&nbsp;&nbsp;<html:text property="loginName"/></td>
-					<td width="220" bgcolor="#FFFFFF" class="STYLE2">&nbsp;ÏµÍ³µÇÂ¼ÕÊºÅ6-10Î»Ó¢ÎÄ×Ö·û»òÊý×Ö</td>
-				</tr>
-				<tr>
-					<td bgcolor="#FFFFFF" class="td0">ÃÜÂë£º</td>
-					<td bgcolor="#FFFFFF">&nbsp;&nbsp;<html:password property="pwd"/></td>
-					<td bgcolor="#FFFFFF" class="STYLE2">&nbsp;µÇÂ¼ÃÜÂë6-10Î»Ó¢ÎÄ×Ö·û»òÊý×Ö</td>
-				</tr>
-				<tr>
-					<td bgcolor="#FFFFFF" class="td0">È·ÈÏÃÜÂë£º</td>
-					<td bgcolor="#FFFFFF">&nbsp;&nbsp;<html:password property="pwd1"/></td>
-					<td bgcolor="#FFFFFF" class="STYLE2">&nbsp;ÑéÖ¤µÇÂ¼ÃÜÂë</td>
-				</tr>
-				<tr>
-					<td bgcolor="#FFFFFF" class="td0">µç×ÓÓÊÏä£º</td>
-					<td bgcolor="#FFFFFF">&nbsp;&nbsp;<html:text property="mail"/></td>
-					<td bgcolor="#FFFFFF" class="STYLE2">&nbsp;ÇëÊäÈëµç×ÓÓÊÏäµØÖ·</td>
+					<td colspan="2" background="images/topNo.jpg" height="243">&nbsp;</td>
 				</tr>
 				<tr>
-					<td height="24" colspan="3" align="center" bgcolor="#FFFFFF">
-						<html:submit value="×¢²á"/>&nbsp;&nbsp;&nbsp;&nbsp;<html:reset value="ÖØÖÃ"/>
+					<td height="24" colspan="2">&nbsp;</td>
+				</tr>
+				<tr>
+					<td width="27" valign="middle">&nbsp;<img src="images/jiantou.jpg" width="15" height="17" /></td>
+					<td width="928" valign="middle"><span class="STYLE1">ï¿½ï¿½Ç°Î»ï¿½Ã£ï¿½</span>ï¿½ï¿½ï¿½Ã»ï¿½×¢ï¿½ï¿½</td>
+				</tr>
+				<tr>
+					<td height="24" colspan="2">&nbsp;</td>
+				</tr>
+				<tr>
+					<td colspan="2" height="200">
+						<html:form action="/reg.do" onsubmit="return checkInput()">
+							<table width="600" border="0" align="center" cellpadding="0" cellspacing="1"
+								bgcolor="#c2d3b0">
+								<tr>
+									<td height="24" colspan="3" align="center" bgcolor="#FFFFFF" class="STYLE1">${error}
+									</td>
+								</tr>
+								<tr>
+									<td width="110" bgcolor="#FFFFFF" class="td0">ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½</td>
+									<td width="266" bgcolor="#FFFFFF">&nbsp;&nbsp;
+										<html:text property="loginName" />
+									</td>
+									<td width="220" bgcolor="#FFFFFF" class="STYLE2">&nbsp;ÏµÍ³ï¿½ï¿½Â¼ï¿½Êºï¿½6-10Î»Ó¢ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+									</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFFF" class="td0">ï¿½ï¿½ï¿½ë£º</td>
+									<td bgcolor="#FFFFFF">&nbsp;&nbsp;
+										<html:password property="pwd" />
+									</td>
+									<td bgcolor="#FFFFFF" class="STYLE2">&nbsp;ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½6-10Î»Ó¢ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFFF" class="td0">È·ï¿½ï¿½ï¿½ï¿½ï¿½ë£º</td>
+									<td bgcolor="#FFFFFF">&nbsp;&nbsp;
+										<html:password property="pwd1" />
+									</td>
+									<td bgcolor="#FFFFFF" class="STYLE2">&nbsp;ï¿½ï¿½Ö¤ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½</td>
+								</tr>
+								<tr>
+									<td bgcolor="#FFFFFF" class="td0">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä£º</td>
+									<td bgcolor="#FFFFFF">&nbsp;&nbsp;
+										<html:text property="mail" />
+									</td>
+									<td bgcolor="#FFFFFF" class="STYLE2">&nbsp;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·</td>
+								</tr>
+								<tr>
+									<td height="24" colspan="3" align="center" bgcolor="#FFFFFF">
+										<html:submit value="×¢ï¿½ï¿½" />&nbsp;&nbsp;&nbsp;&nbsp;
+										<html:reset value="ï¿½ï¿½ï¿½ï¿½" />
+									</td>
+								</tr>
+							</table>
+						</html:form>
 					</td>
 				</tr>
-		  </table>  
-		</html:form>
-				</td> 
-			</tr>
-			<tr>
-				<td colspan="2" background="images/bottomM.gif" height="87">&nbsp;</td>
-			</tr>
-		</table>
-	</body>
-</html>
+				<tr>
+					<td colspan="2" background="images/bottomM.gif" height="87">&nbsp;</td>
+				</tr>
+			</table>
+		</body>
+
+		</html>
