@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.classSelection.dto.User;
+import com.classSelection.dto.UserRole;
 import com.classSelection.util.DBConnection;
 
 public class UserDao implements IntfUserDao {
@@ -32,7 +33,7 @@ public class UserDao implements IntfUserDao {
                 user.setUserName(rs.getString(1));
                 user.setPasswordSHA1(rs.getString(2));
                 user.setEmail(rs.getString(3));
-                user.setUserRole(rs.getString(4));
+                user.setUserRole(UserRole.valueOf(rs.getString(4)));
             }
         } catch (Exception e) {
             e.printStackTrace();

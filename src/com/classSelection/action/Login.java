@@ -1,14 +1,16 @@
 package com.classSelection.action;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.classSelection.service.LoginService;
+import com.google.gson.JsonObject;
+import com.classSelection.dao.UserDao;
+import com.classSelection.dto.User;
 
 public class Login extends HttpServlet{
     @Override
@@ -16,15 +18,23 @@ public class Login extends HttpServlet{
         String userName = req.getParameter("username");
         String passwordSHA1 = req.getParameter("password");
 
-        LoginService service = new LoginService();
-        //调用service方法 把用户名 密码传入给service
-        boolean flag = service.userLogin(userName, passwordSHA1);
+        UserDao dao = new UserDao();
+        User user = dao.getUserByName(userName);
+        boolean flag = user != null && passwordSHA1.equals(user.getPasswordSHA1()) ? true : false;
 
         if(flag){
+            // 将用户名、权限添加至session
+            req.getSession().setAttribute("userName", userName);
+            req.getSession().setAttribute("userRole", user.getUserRole());
+            // 将SESSIONID写入cookie
+            Cookie cookie = new Cookie("JSESSIONID", (String)req.getSession().getId());
+            cookie.setMaxAge(60*10);
+            resp.addCookie(cookie);
+            // 跳转至登录后首页
             resp.sendRedirect("welcome.html");
         }
         else{
-            resp.sendRedirect("login.html");
+            resp.sendRedirect("login.html?loginFail=true");
         }
     }
 }

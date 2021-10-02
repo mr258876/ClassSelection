@@ -4,7 +4,7 @@ public class User implements java.io.Serializable {
 	// Fields
 	private String UserName;
 	private String PasswordSHA1;
-	private String UserRole;
+	private UserRole UserRole;
 	private String Email;
 
 	// Constructors
@@ -14,7 +14,7 @@ public class User implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public User(String UserName, String PasswordSHA1, String UserRole, String Email) {
+	public User(String UserName, String PasswordSHA1, UserRole UserRole, String Email) {
 		this.UserName = UserName;
 		this.PasswordSHA1 = PasswordSHA1;
 		this.UserRole = UserRole;
@@ -38,11 +38,11 @@ public class User implements java.io.Serializable {
 		this.PasswordSHA1 = PasswordSHA1;
 	}
 
-	public String getUserRole() {
+	public UserRole getUserRole() {
 		return this.UserRole;
 	}
 
-	public void setUserRole(String UserRole) {
+	public void setUserRole(UserRole UserRole) {
 		this.UserRole = UserRole;
 	}
 

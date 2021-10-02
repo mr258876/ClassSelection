@@ -14,25 +14,24 @@
         <div class="mdui-row mudi-col-xs-12">
             <h1>用户登陆</h1>
         </div>
-        <form id="login-form" action="/login.do" method="POST">
+        <form id="login-form" action="login.do" method="POST">
             <div class="mdui-row mudi-col-xs-12" id="username-field">
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <i class="mdui-icon material-icons">account_circle</i>
                     <label class="mdui-textfield-label">Username</label>
-                    <input class="mdui-textfield-input" type="text" id="username-input" name="username" required/>
-                    <div class="mdui-textfield-error">用户名不能为空</div>
+                    <input class="mdui-textfield-input" type="text" id="username-input" name="username" required />
                 </div>
             </div>
             <div class="mdui-row mudi-col-xs-12" id="password-field">
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <i class="mdui-icon material-icons">lock</i>
                     <label class="mdui-textfield-label">Password</label>
-                    <input class="mdui-textfield-input" type="password" id="password-input" name="password" required/>
-                    <div class="mdui-textfield-error">密码不能为空</div>
+                    <input class="mdui-textfield-input" type="password" id="password-input" name="password" required />
                 </div>
             </div>
             <div class="mdui-row mudi-col-xs-12 mdui-p-y-3">
-                <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" type="submit">登陆</button>
+                <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent"
+                    onclick="loginSubmit();">登陆</button>
                 <a class="mdui-btn mdui-ripple" href="passwordreset.html">忘记密码</a>
                 <a class="mdui-btn mdui-ripple" href="javascript:;" disabled>注册</a>
             </div>
@@ -47,6 +46,29 @@
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
     $("#header").load("header.html");
+</script>
+<script src="js/SHA1encode.js"></script>
+<script>
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) { return pair[1]; }
+        }
+        return (false);
+    }
+
+    $(document).ready(function () {
+        if (getQueryVariable("loginFail")) {
+            $(".mdui-textfield").addClass("mdui-textfield-invalid");
+            mdui.snackbar({message: "登录失败，请重试", timeout: 5000, position: "top"})
+        }
+    });
+
+    function loginSubmit() {
+        $("#password-input").val(SHA1($("#password-input").val()));
+    }
 </script>
 
 </html>
