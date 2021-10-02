@@ -20,10 +20,10 @@ public class Login extends HttpServlet{
         boolean flag = service.userLogin(userName, passwordSHA1);
  
         if(flag){
-            resp.sendRedirect("/welcome.html");
+            resp.sendRedirect("welcome.html");
         }
         else{
-            resp.sendRedirect("/login.html");
+            resp.sendRedirect("login.html");
         }
     }
 }
