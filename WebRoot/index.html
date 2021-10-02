@@ -50,7 +50,7 @@
 <script>
     $(document).ready(function () {
         function authenticationError() {
-            $(".mdui-progress").remove();
+            $(".mdui-progress").hide();
             $("#please-wait").hide()
             $("#please-retry").removeAttr("hidden")
         }
