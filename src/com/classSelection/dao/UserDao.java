@@ -28,7 +28,7 @@ public class UserDao implements IntfUserDao {
             rs=ps.executeQuery();
         
             if(rs.next()){
-                //把找到的结果一一set进User对象中
+                //把找到的结果set进User对象中
                 user.setUserName(rs.getString(1));
                 user.setPasswordSHA1(rs.getString(2));
                 user.setEmail(rs.getString(3));

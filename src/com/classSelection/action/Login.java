@@ -1,6 +1,7 @@
 package com.classSelection.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +19,7 @@ public class Login extends HttpServlet{
         LoginService service = new LoginService();
         //调用service方法 把用户名 密码传入给service
         boolean flag = service.userLogin(userName, passwordSHA1);
- 
+
         if(flag){
             resp.sendRedirect("welcome.html");
         }

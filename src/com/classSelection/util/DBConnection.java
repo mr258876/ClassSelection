@@ -6,7 +6,7 @@ public class DBConnection {
     // SQLServer驱动包名
     private static final String DRIVER_NAME = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     // 数据库连接地址
-    private static final String URL = "jdbc:sqlserver://localhost:65232;integratedSecurity=true;DatabaseName=ClassSelection";
+    private static final String URL = "jdbc:sqlserver://localhost:65232;integratedSecurity=false;DatabaseName=ClassSelection";
     // 用户名
     private static final String USER_NAME = "sa";
     // 密码
