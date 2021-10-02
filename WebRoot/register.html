@@ -8,22 +8,13 @@
 </script>
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>注册</title>
-    <link rel="stylesheet" href="css/mdui.css" />
+    <link rel="stylesheet" href="/css/mdui.css" />
 </head>
 
 <body class="mdui-theme-primary-indigo mdui-theme-accent-pink ">
-    <header class="mdui-appbar">
-        <div class="mdui-toolbar mdui-color-theme">
-            <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons"></i></a>
-            <a href="javascript:;" class="mdui-typo-title">欢迎使用选课系统</a>
-            <div class="mdui-toolbar-spacer"></div>
-            <a href="javaScript:location.reload();" class="mdui-btn mdui-btn-icon"><i
-                    class="mdui-icon material-icons"></i></a>
-            <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons"></i></a>
-        </div>
-    </header>
+    <header class="mdui-appbar" id="header"></header>
 
     <div class="mdui-container">
         <div class="mdui-row mudi-col-xs-12">
@@ -34,7 +25,7 @@
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <i class="mdui-icon material-icons">account_circle</i>
                     <label class="mdui-textfield-label">Username*</label>
-                    <input class="mdui-textfield-input" type="text" id="username-input" name="username" />
+                    <input class="mdui-textfield-input" type="text" id="username-input" name="username" required/>
                     <div class="mdui-textfield-helper">输入您的用户名</div>
                 </div>
             </div>
@@ -42,15 +33,15 @@
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <i class="mdui-icon material-icons">lock</i>
                     <label class="mdui-textfield-label">Password*</label>
-                    <input class="mdui-textfield-input" type="password" id="password-input" name="password" />
-                    <div class="mdui-textfield-helper">输入您的密码。密码长度在8-16位之间，需要同时包含数字、小写字母、大写字母、特殊符号()@,./*+-中的两种</div>
+                    <input class="mdui-textfield-input" type="password" id="password-input" name="password" pattern="^.*(?=.{8,16})(?=.*[A-Za-z]).*$" required/>
+                    <div class="mdui-textfield-helper">输入您的密码。密码长度在8-16位之间，需要同时包含数字、小写字母、大写字母中的两种</div>
                 </div>
             </div>
             <div class="mdui-row mudi-col-xs-12" id="password-confirm-field">
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <i class="mdui-icon material-icons">lock</i>
                     <label class="mdui-textfield-label">Confirm Password*</label>
-                    <input class="mdui-textfield-input" type="password" id="password-confirm-input" />
+                    <input class="mdui-textfield-input" type="password" id="password-confirm-input" required/>
                     <div class="mdui-textfield-helper">确认您的密码</div>
                 </div>
             </div>
@@ -58,7 +49,7 @@
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <i class="mdui-icon material-icons">mailbox</i>
                     <label class="mdui-textfield-label">E-Mail</label>
-                    <input class="mdui-textfield-input" type="email" id="email-input" />
+                    <input class="mdui-textfield-input" type="email" id="email-input" required/>
                     <div class="mdui-textfield-helper">输入您的邮箱</div>
                 </div>
             </div>
@@ -66,13 +57,13 @@
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <i class="mdui-icon material-icons">my_location</i>
                     <label class="mdui-textfield-label">Identifying Code*</label>
-                    <input class="mdui-textfield-input" type="password" id="identifying-input" name="id" />
+                    <input class="mdui-textfield-input" type="password" id="identifying-input" name="id" required/>
                     <div class="mdui-textfield-helper">输入您的识别码。您的识别码由8位数字组成</div>
                 </div>
             </div>
             <div class="mdui-row mudi-col-xs-12 mdui-p-y-3">
                 <label class="mdui-checkbox">
-                    <input type="checkbox" id="user-agreement-input" />
+                    <input type="checkbox" id="user-agreement-input" required/>
                     <i class="mdui-checkbox-icon"></i>
                     <div class="mdui-typo">我已阅读并同意不存在的《<a href="javascript:;">用户协议</a>》且已知晓可能存在之包括但不限于数据泄露等风险</div>
                 </label>
@@ -86,8 +77,13 @@
     </div>
     </div>
 
-    <script src="js/mdui.js"></script>
+    <script src="/js/mdui.js"></script>
     </div>
 </body>
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    $("#header").load("header.html");
+</script>
 
 </html>

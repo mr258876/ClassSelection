@@ -4,23 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <title>欢迎使用选课系统</title>
-    <link rel="stylesheet" href="css/mdui.css" />
+    <link rel="stylesheet" href="/css/mdui.css" />
 </head>
 
 <body class="mdui-theme-primary-indigo mdui-theme-accent-pink ">
-    <header class="mdui-appbar">
-        <div class="mdui-toolbar mdui-color-theme">
-            <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons"></i></a>
-            <a href="javascript:;" class="mdui-typo-title">欢迎使用选课系统</a>
-            <div class="mdui-toolbar-spacer"></div>
-            <a href="javaScript:location.reload();" class="mdui-btn mdui-btn-icon"><i
-                    class="mdui-icon material-icons"></i></a>
-            <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons"></i></a>
-        </div>
-        <div class="mdui-progress">
-            <div class="mdui-progress-indeterminate"></div>
-        </div>
-    </header>
+    <header class="mdui-appbar" id="header"></header>
 
     <div class="mdui-container">
         <div id="please-retry" hidden>
@@ -41,18 +29,20 @@
         </div>
     </div>
 
-    <script src="js/mdui.js"></script>
+    <script src="/js/mdui.js"></script>
     </div>
 </body>
 
-<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
-</script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
+    $("#header").load("header.html", function(){
+        $("#progress-bar").removeAttr("hidden");
+    });
     $(document).ready(function () {
         function authenticationError() {
-            $(".mdui-progress").hide();
-            $("#please-wait").hide()
-            $("#please-retry").removeAttr("hidden")
+            $("#progress-bar").hide();
+            $("#please-wait").hide();
+            $("#please-retry").removeAttr("hidden");
         }
         setTimeout(authenticationError, 10000);
     });
