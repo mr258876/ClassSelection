@@ -28,6 +28,7 @@ public class Login extends HttpServlet{
             req.getSession().setAttribute("userRole", user.getUserRole());
             // 将SESSIONID写入cookie
             Cookie cookie = new Cookie("JSESSIONID", (String)req.getSession().getId());
+            cookie.setPath("/ClassSelection.Auth");
             cookie.setMaxAge(600);
             resp.addCookie(cookie);
             // 跳转至登录后首页

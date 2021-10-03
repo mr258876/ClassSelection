@@ -1,5 +1,5 @@
 package com.classSelection.dto;
 
 public enum UserRole {
-    ROLE_STUDENT, ROLE_TEACHER, ROLE_MANAGER, ROLE_ADMIN;
+    ROLE_A, ROLE_M, ROLE_T, ROLE_S;
 }
