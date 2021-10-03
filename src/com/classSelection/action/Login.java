@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.JsonObject;
 import com.classSelection.dao.UserDao;
 import com.classSelection.dto.User;
 
@@ -18,6 +17,7 @@ public class Login extends HttpServlet{
         String userName = req.getParameter("username");
         String passwordSHA1 = req.getParameter("password");
 
+        // 查找用户并确认密码
         UserDao dao = new UserDao();
         User user = dao.getUserByName(userName);
         boolean flag = user != null && passwordSHA1.equals(user.getPasswordSHA1()) ? true : false;
@@ -28,7 +28,7 @@ public class Login extends HttpServlet{
             req.getSession().setAttribute("userRole", user.getUserRole());
             // 将SESSIONID写入cookie
             Cookie cookie = new Cookie("JSESSIONID", (String)req.getSession().getId());
-            cookie.setMaxAge(60*10);
+            cookie.setMaxAge(600);
             resp.addCookie(cookie);
             // 跳转至登录后首页
             resp.sendRedirect("welcome.html");

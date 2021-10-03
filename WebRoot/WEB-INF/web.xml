@@ -18,12 +18,18 @@
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 
+	<!-- Session监听器 用于记录SessionID -->
+	<listener>
+		<listener-class>com.classSelection.util.SessionListener</listener-class>
+	</listener>
+
 	<!-- 欢迎页面 -->
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
-	<!-- Servlet -->
+	<!-- Servlet映射 -->
+	<!-- 登录操作 -->
 	<servlet>
 		<servlet-name>userLogin</servlet-name>
 		<servlet-class>com.classSelection.action.Login</servlet-class>
@@ -32,8 +38,17 @@
 		<servlet-name>userLogin</servlet-name>
 		<url-pattern>/login.do</url-pattern>
 	</servlet-mapping>
+	<!-- 身份验证操作 -->
+	<servlet>
+		<servlet-name>auth</servlet-name>
+		<servlet-class>com.classSelection.action.Auth</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>auth</servlet-name>
+		<url-pattern>/auth.do</url-pattern>
+	</servlet-mapping>
 
-	<!-- Session -->
+	<!-- Session销毁时间设置 -->
 	<session-config>
 		<session-timeout>10</session-timeout>
 	</session-config>
