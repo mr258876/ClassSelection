@@ -1,4 +1,4 @@
-package com.classSelection.dto;
+package com.ClassSelection.dto;
 
 public class User implements java.io.Serializable {
 	// Fields

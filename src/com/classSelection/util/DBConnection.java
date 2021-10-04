@@ -1,4 +1,4 @@
-package com.classSelection.util;
+package com.ClassSelection.util;
 
 import java.sql.*;
 
@@ -24,7 +24,7 @@ public class DBConnection {
         }
     }
 
-    public static void closeConn(Connection conn, Statement stm, ResultSet rs) {
+    public static void closeConn(Connection conn, Statement stm) {
         if (stm != null) {
             try {
                 stm.close();
@@ -40,6 +40,11 @@ public class DBConnection {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void closeConn(Connection conn, Statement stm, ResultSet rs) {
+        closeConn(conn, stm);
+        
         if (rs != null) {
             try {
                 rs.close();

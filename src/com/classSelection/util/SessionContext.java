@@ -1,4 +1,4 @@
-package com.classSelection.util;
+package com.ClassSelection.util;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;

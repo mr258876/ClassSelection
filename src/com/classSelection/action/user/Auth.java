@@ -1,4 +1,4 @@
-package com.classSelection.action;
+package com.ClassSelection.action.user;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,8 +15,7 @@ public class Auth extends HttpServlet {
     // Class Auth 用于处理用户短时间内使用有效SessionID登录
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 未知原因无法读取cookie，已弃用
-        // // 通过cokie获取SessionID
+        // 通过cokie获取SessionID
         // Cookie[] cookies = null;
         // cookies = req.getCookies();
         // String sessionID = null;
@@ -31,16 +30,15 @@ public class Auth extends HttpServlet {
 
         // 创建JSON对象
         JsonObject json = new JsonObject();
-        if (req.getSession(false) != null) {
-            json.addProperty("success", true);
+        if (req.getSession(false) == null || req.getSession(false).getAttribute("userName") == null
+                || req.getSession(false).getAttribute("userRole") == null) {
+            json.addProperty("loginStatus", false);
+            json.addProperty("message", "请登录");
+        } else {
+            json.addProperty("loginStatus", true);
             json.addProperty("message", "登录成功");
             json.addProperty("userName", (String) req.getSession(false).getAttribute("userName"));
-            json.addProperty("userRole", (String) req.getSession(false).getAttribute("userRole"));
-        } else {
-            json.addProperty("success", false);
-            json.addProperty("message", "请重新登录");
         }
-        
 
         // if (sessionID == null) {
         //     // 若Cookie中没有SessionID则登录失败

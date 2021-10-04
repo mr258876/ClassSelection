@@ -20,7 +20,7 @@
 
 	<!-- Session监听器 用于记录SessionID -->
 	<listener>
-		<listener-class>com.classSelection.util.SessionListener</listener-class>
+		<listener-class>com.ClassSelection.util.SessionListener</listener-class>
 	</listener>
 
 	<!-- 欢迎页面 -->
@@ -32,16 +32,25 @@
 	<!-- 登录操作 -->
 	<servlet>
 		<servlet-name>userLogin</servlet-name>
-		<servlet-class>com.classSelection.action.Login</servlet-class>
+		<servlet-class>com.ClassSelection.action.user.Login</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>userLogin</servlet-name>
 		<url-pattern>/login.do</url-pattern>
 	</servlet-mapping>
+	<!-- 登出操作 -->
+	<servlet>
+		<servlet-name>userLogin</servlet-name>
+		<servlet-class>com.ClassSelection.action.user.Logout</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>userLogin</servlet-name>
+		<url-pattern>/logout.do</url-pattern>
+	</servlet-mapping>
 	<!-- 身份验证操作 -->
 	<servlet>
 		<servlet-name>auth</servlet-name>
-		<servlet-class>com.classSelection.action.Auth</servlet-class>
+		<servlet-class>com.ClassSelection.action.user.Auth</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>auth</servlet-name>

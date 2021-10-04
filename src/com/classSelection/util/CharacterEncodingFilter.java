@@ -1,4 +1,4 @@
-package com.classSelection.util;
+package com.ClassSelection.util;
 
 import java.io.IOException;
 
