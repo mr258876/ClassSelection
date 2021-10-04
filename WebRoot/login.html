@@ -14,7 +14,7 @@
         <div class="mdui-typo-display-1 mdui-row mudi-col-xs-12">
             <p>登录</p>
         </div>
-        <form id="login-form">
+        <div id="login-form">
             <div class="mdui-row mudi-col-xs-12" id="username-field">
                 <div class="mdui-textfield mdui-textfield-floating-label">
                     <i class="mdui-icon material-icons">account_circle</i>
@@ -35,7 +35,7 @@
                 <a class="mdui-btn mdui-ripple" href="passwordreset.html">忘记密码</a>
                 <a class="mdui-btn mdui-ripple" href="javascript:;" disabled>注册</a>
             </div>
-        </form>
+        </div>
     </div>
     </div>
 
@@ -51,14 +51,15 @@
 <script>
     function loginSubmit() {
         $("#password-input").val(SHA1($("#password-input").val()));
-        $.post("login.do", data = $("#login-form").val(), function (data) {
-            if (data.success) {
-                $(window).attr("location", "welcome.do");
+        $.post("login.do", { 'username': $("#username-input").val(), 'password': $("#password-input").val() }, function (data) {
+            if (data.loginStatus) {
+                $(window).attr("location", "welcome.html");
             } else {
                 $(".mdui-textfield").addClass("mdui-textfield-invalid");
-                mdui.snackbar({ message: "登录失败，请重试", timeout: 5000, position: "top" })
+                $("#password-input").val("");
+                mdui.snackbar({ message: data.message, timeout: 4000, position: "top" })
             }
-        })
+        }, "json");
     }
 </script>
 

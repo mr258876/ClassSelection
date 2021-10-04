@@ -8,11 +8,25 @@ import com.ClassSelection.dto.User;
 import com.ClassSelection.dto.UserRole;
 import com.ClassSelection.util.DBConnection;
 
+enum Searchfield {
+    SEARCH_UESRNAME, SEARCH_EMAIL;
+}
+
 public class UserDao implements IntfUserDao {
     // 获取用户对象
-    public User getUser(String field, String value) {
+    public User getUser(Searchfield field, String value) {
         // 编写sql语句
-        String sql = "SELECT * FROM Users WHERE ? = ?";
+        String sql = null;
+        switch (field){
+            case SEARCH_UESRNAME:
+                sql = "SELECT * FROM Users WHERE UserName = ?";
+                break;
+            case SEARCH_EMAIL:
+                sql = "SELECT * FROM Users WHERE Email = ?";
+                break;
+            default:
+                break;
+        }
         // 获得连接
         Connection conn = DBConnection.getConnection();
         // 返回数据集
@@ -20,11 +34,10 @@ public class UserDao implements IntfUserDao {
         // 实例化一个User对象
         User user = new User();
         try {
-            // 用来发送sql语句的
+            // 准备sql语句
             PreparedStatement ps = conn.prepareStatement(sql);
             // 设置要传入的参数
-            ps.setString(1, field);
-            ps.setString(2, value);
+            ps.setString(1, value);
             // 执行sql语句
             rs = ps.executeQuery();
 
@@ -47,42 +60,16 @@ public class UserDao implements IntfUserDao {
     // 根据用户名查找用户
     @Override
     public User getUserByName(String userName) {
-        return getUser("UserName", userName);
+        return getUser(Searchfield.SEARCH_UESRNAME, userName);
     }
 
     // 根据邮箱查找用户
     @Override
     public User getUserByEmail(String email) {
-        return getUser("Email", email);
+        return getUser(Searchfield.SEARCH_EMAIL, email);
     }
 
     // 更新用户信息(密码、邮箱或权限)
-    @Override
-    public int updateUser(String userName, String field, String value) {
-        // 编写sql语句
-        String sql = "UPDATE Users SET ? = ? WHERE UserName = ?";
-        // 获得连接
-        Connection conn = DBConnection.getConnection();
-        // 返回受影响行数
-        int rowsAffected = 0;
-        try {
-            // 用来发送sql语句的
-            PreparedStatement ps = conn.prepareStatement(sql);
-            // 设置要传入的参数
-            ps.setString(1, field);
-            ps.setString(2, value);
-            ps.setString(3, userName);
-            // 执行sql语句
-            rowsAffected = ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            // 关闭连接
-            DBConnection.closeConn(conn, null);
-        }
-        return rowsAffected;
-    }
-
     @Override
     public int updateUser(User user) {
         // 编写sql语句

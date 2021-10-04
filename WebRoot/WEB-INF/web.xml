@@ -5,15 +5,42 @@
 	<!-- 中文编码过滤器 -->
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
-		<filter-class>com.classSelection.util.CharacterEncodingFilter</filter-class>
+		<filter-class>com.ClassSelection.util.CharacterEncodingFilter</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
-			<param-value>GBK</param-value>
+			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>CharacterEncodingFilterDo</filter-name>
+		<filter-class>com.ClassSelection.util.CharacterEncodingFilterDo</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilterDo</filter-name>
+		<url-pattern>*.do</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilterDo</filter-name>
+		<url-pattern>*.action</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilterDo</filter-name>
+		<url-pattern>*.html</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
@@ -40,11 +67,11 @@
 	</servlet-mapping>
 	<!-- 登出操作 -->
 	<servlet>
-		<servlet-name>userLogin</servlet-name>
+		<servlet-name>userLogout</servlet-name>
 		<servlet-class>com.ClassSelection.action.user.Logout</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>userLogin</servlet-name>
+		<servlet-name>userLogout</servlet-name>
 		<url-pattern>/logout.do</url-pattern>
 	</servlet-mapping>
 	<!-- 身份验证操作 -->
@@ -55,6 +82,15 @@
 	<servlet-mapping>
 		<servlet-name>auth</servlet-name>
 		<url-pattern>/auth.do</url-pattern>
+	</servlet-mapping>
+	<!-- 信息更新操作 -->
+	<servlet>
+		<servlet-name>userUpdate</servlet-name>
+		<servlet-class>com.ClassSelection.action.user.UserUpdate</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>userUpdate</servlet-name>
+		<url-pattern>/user/userupdate.do</url-pattern>
 	</servlet-mapping>
 
 	<!-- Session销毁时间设置 -->

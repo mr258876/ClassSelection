@@ -9,7 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-public class CharacterEncodingFilter implements Filter {
+public class CharacterEncodingFilterDo implements Filter {
 
     protected String encoding = null;
     protected FilterConfig filterConfig = null;
@@ -23,7 +23,7 @@ public class CharacterEncodingFilter implements Filter {
             throws IOException, ServletException {
         if (encoding != null) {
             request.setCharacterEncoding(encoding);
-            response.setCharacterEncoding(encoding);
+            response.setContentType("text/html; charset="+encoding);
         }
         chain.doFilter(request, response);
     }

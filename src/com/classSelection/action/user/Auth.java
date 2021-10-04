@@ -30,8 +30,7 @@ public class Auth extends HttpServlet {
 
         // 创建JSON对象
         JsonObject json = new JsonObject();
-        if (req.getSession(false) == null || req.getSession(false).getAttribute("userName") == null
-                || req.getSession(false).getAttribute("userRole") == null) {
+        if (req.getSession(false) == null || req.getSession(false).getAttribute("user") == null) {
             json.addProperty("loginStatus", false);
             json.addProperty("message", "请登录");
         } else {
@@ -61,7 +60,6 @@ public class Auth extends HttpServlet {
         // }
 
         Cookie cookie = new Cookie("JSESSIONID", (String) req.getSession().getId());
-        cookie.setPath("/ClassSelection.Auth");
         cookie.setMaxAge(600);
         resp.addCookie(cookie);
 

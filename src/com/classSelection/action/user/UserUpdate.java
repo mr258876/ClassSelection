@@ -10,36 +10,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ClassSelection.dao.UserDao;
+import com.ClassSelection.dto.User;
 import com.google.gson.JsonObject;
 
 public class UserUpdate extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-
-        if (session == null || session.getAttribute("userName") == null || session.getAttribute("userRole") == null
-                || session.getAttribute("sensitiveAuth") == null) {
+        HttpSession session = req.getSession(false);
+        if (session == null || session.getAttribute("user") == null || session.getAttribute("sensitiveAuth") == null) {
             returnJSON(resp, false, "身份验证失败");
             return;
         }
 
-        String userName = (String) session.getAttribute("userName");
         UserDao dao = new UserDao();
-        String val = req.getParameter("val");
-        if (val == null || val.equals("")) {
+        String password = req.getParameter("password");
+        String email = req.getParameter("email");
+        if ((password == null || password.isEmpty() || password.length() != 40) && (email == null || email.isEmpty())) {
             returnJSON(resp, false, "操作失败");
             return;
         }
 
-        int result = 0;
-        if (session.getAttribute("sensitiveAuth").equals("updatePassword")) {
-            result = dao.updateUser(userName, "Email", val);
-        } else if (session.getAttribute("sensitiveAuth").equals("updateEmail")) {
-            result = dao.updateUser(userName, "PasswordSHA1", val);
-        } else {
-            returnJSON(resp, false, "身份验证失败");
-            return;
+        User user = (User) session.getAttribute("user");
+        if (!password.isEmpty()){
+            user.setPasswordSHA1(password);
         }
+        if (!email.isEmpty()){
+            user.setEmail(email);
+        }
+
+        int result = 0;
+        result = dao.updateUser(user);
 
         if (result != 1) {
             returnJSON(resp, false, "操作失败");
