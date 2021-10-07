@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="css/mdui.css" />
 </head>
 
-<body class="mdui-theme-primary-indigo mdui-theme-accent-pink ">
-    <header class="mdui-appbar" id="header"></header>
+<body class="mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink mdui-theme-layout-auto mdui-loaded">
+    <div class="mdui-appbar" id="appbar"></div>
 
     <div class="mdui-container">
         <div id="please-retry" hidden>
@@ -38,9 +38,10 @@
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
-    $("#header").load("header.html", function(){
+    $("#appbar").load("appbar/beforeLogin.html", function(){
         $("#progress-bar").removeAttr("hidden");
     });
+
     $(document).ready(function () {
         function authenticationError() {
             $("#progress-bar").hide();
@@ -50,7 +51,7 @@
         setTimeout(authenticationError, 10000);
         $.getJSON("auth.do", function(data){
             if (data.loginStatus) {
-                $(window).attr('location', 'welcome.html');
+                $(window).attr('location', 'home/home.html');
             } else {
                 $(window).attr('location', 'login.html');
             }

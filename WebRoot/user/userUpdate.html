@@ -9,8 +9,8 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>密码重置</title>
-    <link rel="stylesheet" href="css/mdui.css" />
+    <title>用户信息更新</title>
+    <link rel="stylesheet" href="../css/mdui.css" />
 </head>
 
 <body class="mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink mdui-theme-layout-auto mdui-loaded">
@@ -18,14 +18,14 @@
 
     <div class="mdui-container">
         <div class="mdui-typo-display-1 mdui-row mudi-col-xs-12">
-            <p>密码重置</p>
+            <p>用户信息更新</p>
         </div>
         <div class="mdui-row mudi-col-xs-12" id="username-field">
             <div class="mdui-textfield mdui-textfield-floating-label">
-                <i class="mdui-icon material-icons">account_circle</i>
-                <label class="mdui-textfield-label">Username</label>
+                <i class="mdui-icon material-icons">lock</i>
+                <label class="mdui-textfield-label">Password</label>
                 <input class="mdui-textfield-input" type="text" id="username-input" />
-                <div class="mdui-textfield-helper">输入您用户名</div>
+                <div class="mdui-textfield-helper">输入您的新密码</div>
             </div>
         </div>
         <div class="mdui-row mudi-col-xs-12" id="email-field">
@@ -33,7 +33,7 @@
                 <i class="mdui-icon material-icons">mailbox</i>
                 <label class="mdui-textfield-label">E-Mail</label>
                 <input class="mdui-textfield-input" type="email" id="email-input" />
-                <div class="mdui-textfield-helper">输入您的邮箱</div>
+                <div class="mdui-textfield-helper">输入您的新邮箱</div>
             </div>
         </div>
         <div class="mdui-row mudi-col-xs-12 mdui-p-y-3">
@@ -44,13 +44,13 @@
     </div>
     </div>
 
-    <script src="js/mdui.js"></script>
+    <script src="../js/mdui.js"></script>
     </div>
 </body>
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
-    $("#appbar").load("appbar/beforeLogin.html");
+    $("#appbar").load("../appbar/appbar.html");
 </script>
 
 </html>

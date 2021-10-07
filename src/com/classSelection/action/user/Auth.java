@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ClassSelection.dto.User;
 import com.google.gson.JsonObject;
 
 public class Auth extends HttpServlet {
@@ -31,12 +32,15 @@ public class Auth extends HttpServlet {
         // 创建JSON对象
         JsonObject json = new JsonObject();
         if (req.getSession(false) == null || req.getSession(false).getAttribute("user") == null) {
+            // 登录失败返回false
             json.addProperty("loginStatus", false);
             json.addProperty("message", "请登录");
         } else {
+            // 登录成功返回true，用户名及权限
             json.addProperty("loginStatus", true);
             json.addProperty("message", "登录成功");
-            json.addProperty("userName", (String) req.getSession(false).getAttribute("userName"));
+            json.addProperty("userName", ((User) req.getSession(false).getAttribute("user")).getUserName());
+            json.addProperty("userRole", ((User) req.getSession(false).getAttribute("user")).getUserRole().toString());
         }
 
         // if (sessionID == null) {

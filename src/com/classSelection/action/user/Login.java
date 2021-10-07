@@ -19,12 +19,20 @@ public class Login extends HttpServlet {
         String userName = req.getParameter("username");
         String passwordSHA1 = req.getParameter("password");
         String sensitiveAuth = req.getParameter("s-auth");
+        // 创建JSON对象
+        JsonObject json = new JsonObject();
+        PrintWriter out = resp.getWriter();
+        if (userName == null || passwordSHA1 == null){
+            json.addProperty("loginStatus", false);
+            json.addProperty("message", "操作失败");
+            out.println(json);
+            return;
+        }
+
         // 查找用户并确认密码
         UserDao dao = new UserDao();
         User user = dao.getUserByName(userName);
         boolean flag = user != null && user.getPasswordSHA1().equals(passwordSHA1) ? true : false;
-        // 创建JSON对象
-        JsonObject json = new JsonObject();
 
         if (flag) {
             // 将用户名、权限添加至session
@@ -45,7 +53,6 @@ public class Login extends HttpServlet {
             json.addProperty("message", "用户名或密码错误");
         }
 
-        PrintWriter out = resp.getWriter();
         out.println(json);
     }
 }

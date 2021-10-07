@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="css/mdui.css" />
 </head>
 
-<body class="mdui-theme-primary-indigo mdui-theme-accent-pink ">
-    <header class="mdui-appbar" id="header"></header>
+<body class="mdui-appbar-with-toolbar mdui-theme-primary-indigo mdui-theme-accent-pink mdui-theme-layout-auto mdui-loaded">
+    <header class="mdui-appbar mdui-appbar-fixed" id="appbar"></header>
 
     <div class="mdui-container">
         <div class="mdui-typo-display-1 mdui-row mudi-col-xs-12">
@@ -45,21 +45,23 @@
 
 <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
-    $("#header").load("header.html");
+    $("#appbar").load("appbar/beforeLogin.html");
 </script>
 <script src="js/SHA1encode.js"></script>
 <script>
     function loginSubmit() {
-        $("#password-input").val(SHA1($("#password-input").val()));
-        $.post("login.do", { 'username': $("#username-input").val(), 'password': $("#password-input").val() }, function (data) {
-            if (data.loginStatus) {
-                $(window).attr("location", "welcome.html");
-            } else {
-                $(".mdui-textfield").addClass("mdui-textfield-invalid");
-                $("#password-input").val("");
-                mdui.snackbar({ message: data.message, timeout: 4000, position: "top" })
-            }
-        }, "json");
+        if ($("#username-input").val() != "" && $("#password-input").val() != "") {
+            $("#password-input").val(SHA1($("#password-input").val()));
+            $.post("login.do", { 'username': $("#username-input").val(), 'password': $("#password-input").val() }, function (data) {
+                if (data.loginStatus) {
+                    $(window).attr("location", "index.html");
+                } else {
+                    $(".mdui-textfield").addClass("mdui-textfield-invalid");
+                    $("#password-input").val("");
+                    mdui.snackbar({ message: data.message, timeout: 4000, position: "top" })
+                }
+            }, "json");
+        }
     }
 </script>
 

@@ -1,10 +1,10 @@
 package com.ClassSelection.dto;
 
 public enum UserRole {
-    ROLE_A("ROLE_A"),
-    ROLE_M("ROLE_M"),
+    ROLE_S("ROLE_S"),
     ROLE_T("ROLE_T"),
-    ROLE_S("ROLE_S");
+    ROLE_M("ROLE_M"),
+    ROLE_A("ROLE_A");
 
     private String name;
 
@@ -12,7 +12,7 @@ public enum UserRole {
         this.name = name;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -21,7 +21,13 @@ public enum UserRole {
         return name;
     }
 
-    public static UserRole getRole(String name){
-        return UserRole.valueOf(name);
+    public static UserRole getRole(String name) {
+        UserRole role = null;
+        try {
+            role = UserRole.valueOf(name);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return role;
     }
 }

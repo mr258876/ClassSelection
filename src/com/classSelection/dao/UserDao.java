@@ -32,7 +32,7 @@ public class UserDao implements IntfUserDao {
         // 返回数据集
         ResultSet rs = null;
         // 实例化一个User对象
-        User user = new User();
+        User user = null;
         try {
             // 准备sql语句
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -43,6 +43,7 @@ public class UserDao implements IntfUserDao {
 
             if (rs.next()) {
                 // 把找到的结果set进User对象中
+                user = new User();
                 user.setUserName(rs.getString(1));
                 user.setPasswordSHA1(rs.getString(2));
                 user.setEmail(rs.getString(3));
