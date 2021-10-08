@@ -20,11 +20,19 @@
         <div class="mdui-typo-display-1 mdui-row mudi-col-xs-12">
             <p>用户信息更新</p>
         </div>
-        <div class="mdui-row mudi-col-xs-12" id="username-field">
+        <div class="mdui-row mudi-col-xs-12" id="password-field">
             <div class="mdui-textfield mdui-textfield-floating-label">
                 <i class="mdui-icon material-icons">lock</i>
                 <label class="mdui-textfield-label">Password</label>
-                <input class="mdui-textfield-input" type="text" id="username-input" />
+                <input class="mdui-textfield-input" type="password" id="password-input" placeholder="保持不变" />
+                <div class="mdui-textfield-helper">输入您的新密码</div>
+            </div>
+        </div>
+        <div class="mdui-row mudi-col-xs-12" id="password-confirm-field">
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <i class="mdui-icon material-icons">lock</i>
+                <label class="mdui-textfield-label">Password</label>
+                <input class="mdui-textfield-input" type="password" id="password-confirm-input" />
                 <div class="mdui-textfield-helper">输入您的新密码</div>
             </div>
         </div>
@@ -32,14 +40,14 @@
             <div class="mdui-textfield mdui-textfield-floating-label">
                 <i class="mdui-icon material-icons">mailbox</i>
                 <label class="mdui-textfield-label">E-Mail</label>
-                <input class="mdui-textfield-input" type="email" id="email-input" />
+                <input class="mdui-textfield-input" type="email" id="email-input" placeholder="保持不变" />
                 <div class="mdui-textfield-helper">输入您的新邮箱</div>
             </div>
         </div>
         <div class="mdui-row mudi-col-xs-12 mdui-p-y-3">
             <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent g-recaptcha"
                 data-sitekey="6LdMjvUZAAAAADRaUawSfTCpaQFLa95EleneNZmR" data-callback='onSubmit'
-                data-action='submit'>重置</button>
+                data-action='submit'>确认</button>
         </div>
     </div>
     </div>
