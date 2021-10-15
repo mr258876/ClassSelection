@@ -4,20 +4,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.ClassSelection.dto.Student;
+import com.ClassSelection.dto.Department;
 import com.ClassSelection.util.DBConnection;
 
-public class StudentDao implements IntfStudentDao {
+public class DepartmentDao implements IntfDepartmentDao{
     // 获取学生对象
-    public Student getStudent(SearchField field, String value) {
+    public Department getDepartment(SearchField field, String value) {
         // 编写sql语句
         String sql = null;
         switch (field){
             case SEARCH_UESRNAME:
-                sql = "SELECT * FROM Student WHERE UserName = ?";
+                sql = "SELECT * FROM Department WHERE UserName = ?";
                 break;
-            case SEARCH_STUDENTID:
-                sql = "SELECT * FROM Student WHERE StudentID = ?";
+            case SEARCH_DEPARTMENTID:
+                sql = "SELECT * FROM Department WHERE DepartmentID = ?";
                 break;
             default:
                 break;
@@ -26,8 +26,8 @@ public class StudentDao implements IntfStudentDao {
         Connection conn = DBConnection.getConnection();
         // 返回数据集
         ResultSet rs = null;
-        // 实例化一个Student对象
-        Student student = null;
+        // 实例化一个Department对象
+        Department Department = null;
         try {
             // 准备sql语句
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -38,10 +38,10 @@ public class StudentDao implements IntfStudentDao {
 
             if (rs.next()) {
                 // 把找到的结果set进User对象中
-                student = new Student();
-                student.setStudentID(rs.getString(1));
-                student.setUserName(rs.getString(2));
-                student.setStudentName(rs.getString(3));
+                Department = new Department();
+                Department.setDepartmentID(rs.getString(1));
+                Department.setUserName(rs.getString(2));
+                Department.setDepartmentName(rs.getString(3));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,25 +49,25 @@ public class StudentDao implements IntfStudentDao {
             // 关闭连接
             DBConnection.closeConn(conn, null, rs);
         }
-        return student;
+        return Department;
     }
 
 
     @Override
-    public Student getStudentByUserName(String UserName) {
-        return getStudent(SearchField.SEARCH_UESRNAME, UserName);
+    public Department getDepartmentByUserName(String UserName) {
+        return getDepartment(SearchField.SEARCH_UESRNAME, UserName);
     }
 
     @Override
-    public Student getStudentBySID(String SID) {
-        return getStudent(SearchField.SEARCH_STUDENTID, SID);
+    public Department getDepartmentBySID(String DeptID) {
+        return getDepartment(SearchField.SEARCH_DEPARTMENTID, DeptID);
     }
 
 
     @Override
-    public int updateStudent(Student student) {
+    public int updateDepartment(Department Department) {
         // 编写sql语句
-        String sql = "UPDATE Student SET StudentID = ?, StudentName = ? WHERE UserName = ?";
+        String sql = "UPDATE Department SET DepartmentID = ?, DepartmentName = ? WHERE UserName = ?";
         // 获得连接
         Connection conn = DBConnection.getConnection();
         // 返回受影响行数
@@ -76,9 +76,9 @@ public class StudentDao implements IntfStudentDao {
             // 用来发送sql语句的
             PreparedStatement ps = conn.prepareStatement(sql);
             // 设置要传入的参数
-            ps.setString(1, student.getStudentID());
-            ps.setString(2, student.getStudentName());
-            ps.setString(3, student.getUserName());
+            ps.setString(1, Department.getDepartmentID());
+            ps.setString(2, Department.getDepartmentName());
+            ps.setString(3, Department.getUserName());
             // 执行sql语句
             rowsAffected = ps.executeUpdate();
         } catch (Exception e) {
