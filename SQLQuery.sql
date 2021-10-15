@@ -43,9 +43,9 @@ CREATE TABLE Teacher(
 	TeacherID char(8) PRIMARY KEY,
 	UserName nvarchar(10) UNIQUE NOT NULL,
 	DepartmentID char(3) NOT NULL,
-	TeacherName nvarchar(32) NOT NULL
-	CONSTRAINT fk_teacher_username FOREIGN KEY (UserName) REFERENCES Users(UserName) ON DELETE NO ACTION ON UPDATE CASCADE,
-	CONSTRAINT fk_teacher_department FOREIGN KEY (UserName) REFERENCES Department(DepartmentID) ON DELETE NO ACTION ON UPDATE CASCADE
+	TeacherName nvarchar(32) NOT NULL,
+	CONSTRAINT fk_teacher_username FOREIGN KEY (UserName) REFERENCES Users(UserName) ON DELETE NO ACTION ON UPDATE NO ACTION,
+	CONSTRAINT fk_teacher_department FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
 -- 插入教师'31111111',密码'123456',权限'管理员'
@@ -70,24 +70,26 @@ INSERT INTO Class VALUES ('MIS307', '31111111', 'MIS', '202101', '高级系统�
 
 -- 创建课程安排表
 CREATE TABLE ClassSchedule(
-	ClassID char(6) PRIMARY KEY,
-	YearSemester char(6) PRIMARY KEY,
-	ClassDay tinyint PRIMARY KEY CHECK (ClassDay < 8 AND ClassDay > 0),
-	StartTime time PRIMARY KEY,
-	EndTime time NOT NULL
+	ClassID char(6),
+	YearSemester char(6),
+	ClassDay tinyint CHECK (ClassDay < 8 AND ClassDay > 0),
+	StartTime time,
+	EndTime time NOT NULL,
 	ClassRoom nvarchar(10) NOT NULL,
+	CONSTRAINT pk_ClassSchedule PRIMARY KEY (ClassID, YearSemester, ClassDay, StartTime)
 );
 
 -- 插入课程安排
-INSERT INTO ClassSchedule VALUES ('MIS307', '202101', 4, 14:00, 16:00, '二教101');
+INSERT INTO ClassSchedule VALUES ('MIS307', '202101', 4, '14:00', '16:00', '二教101');
 
 
 -- 创建课程余量表
 CREATE TABLE ClassRemain(
-	ClassID char(6) PRIMARY KEY,
-	YearSemester char(6) PRIMARY KEY,
+	ClassID char(6),
+	YearSemester char(6),
 	StudLimit smallint NOT NULL CHECK (StudLimit > 0 AND StudLimit < 32767),
-	Selected smallint NOT NULL CHECK (Selected >= 0 AND Selected < 32767)
+	Selected smallint NOT NULL CHECK (Selected >= 0 AND Selected < 32767),
+	CONSTRAINT pk_ClassRemain PRIMARY KEY (ClassID, YearSemester)
 );
 
 -- 插入课程余量
@@ -96,7 +98,8 @@ INSERT INTO ClassRemain VALUES ('MIS307', '202101', 30, 25);
 
 -- 创建选课表
 CREATE TABLE ClassSelection(
-	ClassID char(6) PRIMARY KEY,
-	YearSemester char(6) PRIMARY KEY,
-	StudentID char(8) PRIMARY KEY
+	ClassID char(6),
+	YearSemester char(6),
+	StudentID char(8),
+	CONSTRAINT pk_ClassSelection PRIMARY KEY (ClassID, YearSemester, StudentID)
 );

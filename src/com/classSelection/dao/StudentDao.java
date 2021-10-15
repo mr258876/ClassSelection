@@ -4,21 +4,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.ClassSelection.dto.User;
-import com.ClassSelection.dto.UserRole;
+import com.ClassSelection.dto.Student;
 import com.ClassSelection.util.DBConnection;
 
 
-public class UserDao implements IntfUserDao {
-    // 获取用户对象
-    public User getUser(SearchField field, String value) {
+public class StudentDao implements IntfStudentDao {
+    // 获取学生对象
+    public Student getStudent(SearchField field, String value) {
         // 编写sql语句
         String sql = null;
         switch (field){
             case SEARCH_UESRNAME:
                 sql = "SELECT * FROM Users WHERE UserName = ?";
                 break;
-            case SEARCH_EMAIL:
+            case SEARCH_STUDENTID:
                 sql = "SELECT * FROM Users WHERE Email = ?";
                 break;
             default:
@@ -28,8 +27,8 @@ public class UserDao implements IntfUserDao {
         Connection conn = DBConnection.getConnection();
         // 返回数据集
         ResultSet rs = null;
-        // 实例化一个User对象
-        User user = null;
+        // 实例化一个Student对象
+        Student student = null;
         try {
             // 准备sql语句
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -40,11 +39,10 @@ public class UserDao implements IntfUserDao {
 
             if (rs.next()) {
                 // 把找到的结果set进User对象中
-                user = new User();
-                user.setUserName(rs.getString(1));
-                user.setPasswordSHA1(rs.getString(2));
-                user.setEmail(rs.getString(3));
-                user.setUserRole(UserRole.getRole(rs.getString(4)));
+                student = new Student();
+                student.setStudentID(rs.getString(1));
+                student.setUserName(rs.getString(2));
+                student.setStudentName(rs.getString(3));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,26 +50,25 @@ public class UserDao implements IntfUserDao {
             // 关闭连接
             DBConnection.closeConn(conn, null, rs);
         }
-        return user;
+        return student;
     }
 
-    // 根据用户名查找用户
+
     @Override
-    public User getUserByName(String userName) {
-        return getUser(SearchField.SEARCH_UESRNAME, userName);
+    public Student getStudentByUserName(String UserName) {
+        return getStudent(SearchField.SEARCH_UESRNAME, UserName);
     }
 
-    // 根据邮箱查找用户
     @Override
-    public User getUserByEmail(String email) {
-        return getUser(SearchField.SEARCH_EMAIL, email);
+    public Student getStudentBySID(String SID) {
+        return getStudent(SearchField.SEARCH_STUDENTID, SID);
     }
 
-    // 更新用户信息(密码、邮箱或权限)
+
     @Override
-    public int updateUser(User user) {
+    public int updateStudent(Student student) {
         // 编写sql语句
-        String sql = "UPDATE Users SET PasswordSHA1 = ?, Email = ?, UserRole = ? WHERE UserName = ?";
+        String sql = "UPDATE Users SET StudentID = ?, StudentName = ? WHERE UserName = ?";
         // 获得连接
         Connection conn = DBConnection.getConnection();
         // 返回受影响行数
@@ -80,10 +77,9 @@ public class UserDao implements IntfUserDao {
             // 用来发送sql语句的
             PreparedStatement ps = conn.prepareStatement(sql);
             // 设置要传入的参数
-            ps.setString(1, user.getPasswordSHA1());
-            ps.setString(2, user.getEmail());
-            ps.setString(3, user.getUserRole().toString());
-            ps.setString(4, user.getUserName());
+            ps.setString(1, student.getStudentID());
+            ps.setString(2, student.getStudentName());
+            ps.setString(3, student.getUserName());
             // 执行sql语句
             rowsAffected = ps.executeUpdate();
         } catch (Exception e) {
@@ -94,4 +90,5 @@ public class UserDao implements IntfUserDao {
         }
         return rowsAffected;
     }
+
 }
